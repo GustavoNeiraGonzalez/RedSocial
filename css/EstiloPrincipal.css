@@ -1,6 +1,41 @@
-header{
-    height: 790px;
+*{
+    padding:0;
+    margin:0;
 }
+header{
+    height: auto;
+    display: flex;
+
+}
+header .imagenIzq{
+    width: 30%;
+}
+header .imagenIzq img{
+    height: 130px;
+    max-width: 100%;
+}
+header .imagenesMedio{
+    display: flex;
+    
+    width: 40%;
+}
+header .imagenesMedio img{
+    height: 70px;
+}
+header .imagenDerecha{
+    width: 30%;
+}
+header .imagenDerecha img{
+    height: 130px;
+    max-width: 100%;
+
+}
+
 body{
-    background-image: 
+    background-image: url("https://image.freepik.com/vector-gratis/fondo-paisaje-retro-futurista-sol_52683-18844.jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+img{
+    height: 100px;
 }
