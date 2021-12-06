@@ -5,7 +5,7 @@
 header{
     height: auto;
     display: flex;
-
+    background-color: hsla(240, 87%, 40%, 0.281);
 }
 header .imagenIzq{
     width: 30%;
@@ -13,6 +13,7 @@ header .imagenIzq{
 header .imagenIzq img{
     height: 130px;
     max-width: 100%;
+    border-radius: 20%;
 }
 header .imagenesMedio{
     display: flex;
@@ -32,7 +33,7 @@ header .imagenDerecha{
 header .imagenDerecha img{
     height: 130px;
     max-width: 100%;
-
+    border-radius: 20%;
 }
 
 body{
@@ -42,4 +43,46 @@ body{
 }
 img{
     height: 100px;
+}
+article{
+    display: flex;
+    justify-content: space-between;
+}
+article section{
+    height: 100%;
+    width: 25%;
+}
+article img{
+    width: 15px;
+}
+article .seccionIzq input{
+    width: 80%;
+    
+}
+article .seccionIzq h4{
+    width: 90%;
+    text-align: center;
+    font-size: small;
+}
+article .seccionIzq #artImgIzq{
+    width: 80%;
+}
+article .seccionIzq img{
+    width: 35%;
+    padding-left: 5%;
+    height: 50px;
+}
+article .seccionMedio{
+    width: 45%;
+}
+article .seccionMedio input{
+    width: 70%;
+}
+article .seccionMedio .publicacionMedio{
+    font: ;
+}
+h4{
+    font-size: small;
+}
+article .seccionDerecha{
 }
