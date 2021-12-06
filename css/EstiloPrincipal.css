@@ -94,15 +94,25 @@ article .seccionMedio .divPublicarTop img{
     height: 25px;
     border-radius: 50%
 }
+.seccionMedio .publicacionImagen{
+    background-color: rgba(226, 223, 217, 0.5);
+    margin-bottom: 13px;
+    text-align: center;
+}
 .seccionMedio .publicacionImagen img{
     width: 80%;
-    text-align: center;
+    margin-left: 5%;
+    border-radius: 20%;
 }
 .seccionMedio div .InfoPerfil{
     display: flex;
+    border-bottom: solid;
+    border-color: rgba(226, 223, 217, 0.247);
+    margin-bottom: 5px;
 }
 .seccionMedio div .InfoPerfil .texto{
     padding-left: 5px;
+
 }
 
 .seccionMedio div .InfoPerfil img{
