@@ -16,11 +16,15 @@ header .imagenIzq img{
 }
 header .imagenesMedio{
     display: flex;
-    
+
     width: 40%;
 }
 header .imagenesMedio img{
-    height: 70px;
+    border-radius: 20%;
+    height: 50px;
+    width: 20%;
+    margin-left: 6px;
+    margin-top: 80px;
 }
 header .imagenDerecha{
     width: 30%;
