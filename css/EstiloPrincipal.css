@@ -134,12 +134,14 @@ article .seccionMedio .divPublicarTop img{
     margin-bottom: 13px;
     text-align: center;
     width: 70%;
+    padding-bottom: 12px;
 }
 .seccionMedio .publicacionImagen img{
     width: 80%;
     max-width: 250px;
     margin-left: 5%;
     border-radius: 20%;
+    margin-bottom: 7px;
 }
 .seccionMedio div .InfoPerfil{
     display: flex;
