@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname,'views'))
 //settings
 
-//middlewares (ejecutar funciones primero)
+//middlewares (ejecuta funciones primero(antes de las que pide el usuario))
 app.use(morgan('dev'));
 
 
