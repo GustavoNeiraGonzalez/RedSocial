@@ -5,6 +5,10 @@ const mysql = require('mysql');
 const myConnection = require('express-myconnection');
 
 const app = express();
+//importing routes
+const publicacionRoutes = require('./routes/publicacion');
+
+
 //settings
 app.set('port', process.env.PORT || 3000) //significa que revise el puerto
 //en el sistema operativo y si no existe, entonces que cree el puerto 3000
@@ -23,6 +27,15 @@ app.use(myConnection(mysql, {
 }, 'single'))
 
 //middlewares
+
+//routes
+app.use('/', publicacionRoutes);
+//routes
+//static files
+app.use(express.static(path.join(__dirname, 'public')));
+//static files
+
+
 
 app.listen(app.get('port'), () =>{
     console.log('Server on port 3000');

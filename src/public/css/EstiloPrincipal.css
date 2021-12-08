@@ -1,0 +1,212 @@
+*{
+    padding:0;
+    margin:0;
+}
+header{
+    height: auto;
+    display: flex;
+    background-color: hsla(240, 87%, 40%, 0.281);
+}
+header .imagenIzq{
+    width: 30%;
+}
+header .imagenIzq img{
+    height: 130px;
+    max-width: 100%;
+    border-radius: 20%;
+}
+header .imagenesMedio{
+    display: flex;
+    width: 40%;
+}
+header .imagenesMedio img{
+    border-radius: 20%;
+    height: 50px;
+    width: 20%;
+    margin-left: 6px;
+    margin-top: 80px;
+}
+header .imagenDerecha{
+    width: 30%;
+    display: flex;
+    justify-content: end;
+
+}
+header .imagenDerecha img{
+    height: 130px;
+    max-width: 100%;
+    border-radius: 20%;
+    margin-right: 10px;
+}
+
+body{
+    background-image: url("https://image.freepik.com/vector-gratis/fondo-paisaje-retro-futurista-sol_52683-18844.jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+    min-height: 100vh;
+}
+img{
+    height: 100px;
+}
+article{
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    background-color: hsla(215, 35%, 45%, 0.747);
+
+}
+article section{
+    width: 25%;
+    
+}
+article img{
+    width: 15px;
+}
+
+article .seccionLado input{
+    width: 80%;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 25px;
+}
+article .seccionLado #ImagenGrande img{
+    min-height: 80px;
+    width: 90%;    
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 25%;
+    max-height: 190px;
+    max-width: 230px;
+}
+article .seccionLado #busquedaIzq{
+    margin-top: 20px;
+}
+article .seccionLado h4{
+    width: 90%;
+    text-align: center;
+    font-size: small;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+article .seccionLado #artImgIzq{
+    width: 80%;
+}
+article .seccionLado img{
+    width: 40%;
+    padding-left: 5%;
+    height: 50px;
+    border-radius: 45%;
+    margin-bottom: 20px;
+}
+article .seccionMedio{
+    width: 45%;
+    padding-right: 3px;
+    padding-left: 3px;
+    border-right: solid;
+    border-left: solid;
+    border-color: hsla(215, 23%, 53%, 0.747);
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+article .seccionMedio input{
+    width: 60%;
+    max-height: 17px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 25px;
+}
+article .seccionMedio i{
+    color: rgba(48, 3, 3, 0.747);
+}
+article .seccionMedio .divPublicarTop{
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+article .seccionMedio .divPublicarTop img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%
+}
+.seccionMedio .publicacionImagen{
+    background-color: rgba(226, 223, 217, 0.5);
+    margin-bottom: 13px;
+    text-align: center;
+    width: 70%;
+    padding-bottom: 12px;
+}
+.seccionMedio .publicacionImagen img{
+    width: 80%;
+    max-width: 250px;
+    margin-left: 5%;
+    border-radius: 20%;
+    margin-bottom: 7px;
+}
+.seccionMedio div .InfoPerfil{
+    display: flex;
+    border-bottom: solid;
+    border-color: rgba(226, 223, 217, 0.247);
+    margin-bottom: 5px;
+    justify-content: center;
+}
+.seccionMedio div .InfoPerfil .texto{
+    padding-left: 5px;
+
+}
+
+.seccionMedio div .InfoPerfil img{
+    width: 15%;
+    height: 30px;
+    border-radius: 45%;
+}
+h4{
+    font-size: small;
+}
+article .seccionDerecha{
+}
+@media all and (min-width:760px){
+    .seccionMedio .publicacionImagen{
+        width: 70%;
+    }
+    article .seccionMedio input{
+        max-height: 17px;
+        width: 86%;
+    }
+    article .seccionLado input{
+        height: 17px;
+    }
+}
+@media all and (min-width:900px){
+    header .imagenIzq{
+        width: aut;
+    }
+    header .imagenesMedio{
+        width: 100%;
+        padding-left: 40px;
+    }
+    header .imagenesMedio img{
+        max-width: 100px;
+        border-radius: 40%;
+        height: 70px;
+        margin-top: 60px;
+
+    }
+    .seccionMedio .divPublicarTop img{
+        
+        min-width: 27px;
+        min-height: 27px;
+        
+    }
+    article .seccionLado img{
+        width: 40%;
+        padding-left: 5%;
+        height: 70px;
+        border-radius: 45%;
+        margin-bottom: 20px;
+    }
+    article .seccionLado #ImagenGrande img{
+        min-height: 80px;
+        height: 150px;
+    }
+}
