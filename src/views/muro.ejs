@@ -11,7 +11,12 @@
 </head>
 <body>
     <%- include ('partials/_header'); %>
-    
+    <h1><%- data[0].texto %></h1>
+    <% if (data) { %>
+        <% for (var i = 0; i < data.length; i++) { %>
+            <h1><%- data[i].texto %></h1>
+            <% } %>
+    <% } %>
     <article>
         <section class="seccionLado">
             <div id="busquedaIzq">
