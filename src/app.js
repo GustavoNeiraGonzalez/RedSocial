@@ -25,7 +25,7 @@ app.use(myConnection(mysql, {
     port:3306,
     database: 'redsocial'
 }, 'single'))
-
+app.use(express.urlencoded({extend: false}));
 //middlewares
 
 //routes
