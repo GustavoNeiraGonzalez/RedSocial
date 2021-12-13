@@ -41,17 +41,22 @@
 
                 </form>
             </div>
-            <div class="publicacionImagen">
-                <div class="InfoPerfil">
-                    <img src="img/woman-3083390_1920.jpg" alt="">
-                    <div class="texto">
-                        <h4>alejandro</h4>
-                        <p>hace 5 minutos</p>
+            <% if (data) { %>
+                <% for (var i = 0; i < data.length; i++) { %>
+                    <div class="publicacionImagen">
+                        <button href="/delete">asd</button>
+                        <div class="InfoPerfil">
+                            <img src="img/woman-3083390_1920.jpg" alt="">
+                            <div class="texto">
+                                <h4>alejandro</h4>
+                                <p>hace 5 minutos</p>
+                            </div>
+                        </div>
+                        <h4><%- data[i].texto %></h4>
                     </div>
-                </div>
-                <h4>en la citty....</h4>
-                <img src="img/cafe-3537801_1920.jpg" alt="">
-            </div>
+                    <% } %>
+            <% } %> 
+            
             <div class="publicacionImagen">
                 <div class="InfoPerfil">
                     <img src="img/woman-3083390_1920.jpg" alt="">

@@ -22,9 +22,23 @@ controller.save = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO publicacion set ?', [data], (err, publicaciones) => {
             console.log(publicaciones);
-            res.send('works');
+            res.redirect('/');
         });
     })
 }
+controller.save = (req, res) => {
+    const data = req.body;
+
+    req.getConnection((err, conn) => {
+        conn.query('INSERT INTO publicacion set ?', [data], (err, publicaciones) => {
+            console.log(publicaciones);
+            res.redirect('/');
+        });
+    })
+}
+controller.delete = (req, res) => {
+    
+}
+
 
 module.exports = controller;
