@@ -130,10 +130,12 @@ article .seccionMedio .divPublicarTop img{
     border-radius: 50%
 }
 .seccionMedio .DivModificar{
+    display:flex;
     position: relative;
-    left: 70%;
+    left: 101%;
     background-color: brown;
     padding:8px;
+    width: 60%;
 }
 .seccionMedio .publicacionImagen{
     background-color: rgba(226, 223, 217, 0.5);
