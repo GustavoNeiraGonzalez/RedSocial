@@ -131,11 +131,11 @@ article .seccionMedio .divPublicarTop img{
 }
 .seccionMedio .DivModificar{
     display:flex;
-    position: relative;
-    left: 101%;
+    position: absolute;
+    right:7%;
     background-color: brown;
     padding:8px;
-    width: 60%;
+    
 }
 .seccionMedio .publicacionImagen{
     background-color: rgba(226, 223, 217, 0.5);
@@ -217,5 +217,32 @@ article .seccionDerecha{
     article .seccionLado #ImagenGrande img{
         min-height: 80px;
         height: 150px;
+    }
+}
+
+@media all and (min-width:320px){
+    .seccionMedio .DivModificar{
+        width: 80px;
+        right: 5%;
+        font-size: 13px;
+    }
+}
+@media all and (min-width:500px){
+    .seccionMedio .DivModificar{
+        width: 100px;
+        left: 70%;
+        font-size: 13px;
+    }
+}
+@media all and (min-width:650px){
+    .seccionMedio .DivModificar{
+        width: 150px;
+        font-size: 15px;
+    }
+}
+@media all and (min-width:800px){
+    .seccionMedio .DivModificar{
+        width: 180px;
+        font-size: 15px;
     }
 }
