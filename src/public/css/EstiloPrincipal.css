@@ -129,12 +129,27 @@ article .seccionMedio .divPublicarTop img{
     height: 25px;
     border-radius: 50%
 }
+.seccionMedio .DivModificar{
+    display:flex;
+    position: absolute;
+    right:7%;
+    background-color: brown;
+    padding:8px;
+    display:none;
+}
 .seccionMedio .publicacionImagen{
     background-color: rgba(226, 223, 217, 0.5);
     margin-bottom: 13px;
     text-align: center;
     width: 70%;
     padding-bottom: 12px;
+}
+.seccionMedio #ModificarCaja{
+    display: flex;
+    justify-content: end;
+}
+.seccionMedio #ModificarCaja i{
+    padding-right: 5px;
 }
 .seccionMedio .publicacionImagen img{
     width: 80%;
@@ -152,7 +167,6 @@ article .seccionMedio .divPublicarTop img{
 }
 .seccionMedio div .InfoPerfil .texto{
     padding-left: 5px;
-
 }
 
 .seccionMedio div .InfoPerfil img{
@@ -163,8 +177,7 @@ article .seccionMedio .divPublicarTop img{
 h4{
     font-size: small;
 }
-article .seccionDerecha{
-}
+
 @media all and (min-width:760px){
     .seccionMedio .publicacionImagen{
         width: 70%;
@@ -209,5 +222,32 @@ article .seccionDerecha{
     article .seccionLado #ImagenGrande img{
         min-height: 80px;
         height: 150px;
+    }
+}
+
+@media all and (min-width:320px){
+    .seccionMedio .DivModificar{
+        width: 80px;
+        right: 5%;
+        font-size: 13px;
+    }
+}
+@media all and (min-width:500px){
+    .seccionMedio .DivModificar{
+        width: 100px;
+        left: 70%;
+        font-size: 13px;
+    }
+}
+@media all and (min-width:650px){
+    .seccionMedio .DivModificar{
+        width: 150px;
+        font-size: 15px;
+    }
+}
+@media all and (min-width:800px){
+    .seccionMedio .DivModificar{
+        width: 180px;
+        font-size: 15px;
     }
 }

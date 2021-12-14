@@ -11,12 +11,6 @@
 </head>
 <body>
     <%- include ('partials/_header'); %>
-    <h1><%- data[0].texto %></h1>
-    <% if (data) { %>
-        <% for (var i = 0; i < data.length; i++) { %>
-            <h1><%- data[i].texto %></h1>
-            <% } %>
-    <% } %>
     <article>
         <section class="seccionLado">
             <div id="busquedaIzq">
@@ -37,14 +31,23 @@
                 <img src="img/woman-3083390_1920.jpg" alt="">
                 <form action="/add" method="post">
                     <input type="text" name="texto" placeholder="¿que piensas?"> 
-                    <button type="submit"></button><i class="fas fa-search"></i>
+                    <button type="submit"><i class="fas fa-search"></i></button>
 
                 </form>
             </div>
             <% if (data) { %>
                 <% for (var i = 0; i < data.length; i++) { %>
                     <div class="publicacionImagen">
-                        <i class="fas fa-bars"></i>
+                        <div id="ModificarCaja">
+                            <i class="fas fa-wrench" class="IconoModificar"></i>
+                            <div class="DivModificar">
+                                <form action="" method="post">
+                                    <p>Escriba la modificación de texto</p>
+                                    <input type="text" name="texto" placeholder="¿que piensas?"> 
+                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
                         <a href="/delete/<%= data[i].id %>">Eliminar</a>
                         <div class="InfoPerfil">
                             <img src="img/woman-3083390_1920.jpg" alt="">
