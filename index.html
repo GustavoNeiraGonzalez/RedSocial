@@ -6,25 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
     <link rel="shortcut icon" href="" />
-    <link rel="stylesheet" href="css/EstiloPrincipal.css">
+    <link rel="stylesheet" href="/css/EstiloPrincipal.css">
     <title>Red Social</title>
 </head>
 <body>
-
-    <header>
-        <div class="imagenIzq">
-            <img src="img/startup-3267505_1920.jpg" alt="">
-        </div>
-        <div class="imagenesMedio">
-            <img src="img/smile-2072907_1920.jpg" alt="">
-            <img src="img/girl-1641215_1920.jpg" alt="">
-            <img src="img/girl-1641215_1920.jpg" alt="">
-
-        </div>
-        <div class="imagenDerecha">
-            <img src="img/umbrella-1822586_1920.jpg" alt="">
-        </div>
-    </header>
+    <%- include ('partials/_header'); %>
+    <h1><%- data[0].texto %></h1>
+    <% if (data) { %>
+        <% for (var i = 0; i < data.length; i++) { %>
+            <h1><%- data[i].texto %></h1>
+            <% } %>
+    <% } %>
     <article>
         <section class="seccionLado">
             <div id="busquedaIzq">
@@ -43,19 +35,38 @@
         <section class="seccionMedio">
             <div class="divPublicarTop">
                 <img src="img/woman-3083390_1920.jpg" alt="">
-                <input type="text" placeholder="¿que piensas?"> <i class="fas fa-search"></i>
+                <form action="/add" method="post">
+                    <input type="text" name="texto" placeholder="¿que piensas?"> 
+                    <button type="submit"></button><i class="fas fa-search"></i>
+
+                </form>
             </div>
-            <div class="publicacionImagen">
-                <div class="InfoPerfil">
-                    <img src="img/woman-3083390_1920.jpg" alt="">
-                    <div class="texto">
-                        <h4>alejandro</h4>
-                        <p>hace 5 minutos</p>
+            <% if (data) { %>
+                <% for (var i = 0; i < data.length; i++) { %>
+                    <div class="publicacionImagen">
+                        <div>
+                            <i class="fas fa-bars"></i>
+                            <div class="DivModificar">
+                                <form action="" method="post">
+                                    <input type="text" name="texto" placeholder="¿que piensas?"> 
+                                    <button type="submit"></button><i class="fas fa-search"></i>
+                                </form>
+                            </div>
+                        </div>
+                        <a href="/delete/<%= data[i].id %>">Eliminar</a>
+                        <div class="InfoPerfil">
+                            <img src="img/woman-3083390_1920.jpg" alt="">
+                            <div class="texto">
+                                <h4>alejandro</h4>
+                                <p>hace 5 minutos</p>
+                            </div>
+                        </div>
+                        <h4><%- data[i].texto %></h4>
+                        <h4 class="idInv"><%- data[i].id %></h4>
                     </div>
-                </div>
-                <h4>en la citty....</h4>
-                <img src="img/cafe-3537801_1920.jpg" alt="">
-            </div>
+                    <% } %>
+            <% } %> 
+            
             <div class="publicacionImagen">
                 <div class="InfoPerfil">
                     <img src="img/woman-3083390_1920.jpg" alt="">

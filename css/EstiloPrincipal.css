@@ -129,6 +129,12 @@ article .seccionMedio .divPublicarTop img{
     height: 25px;
     border-radius: 50%
 }
+.seccionMedio .DivModificar{
+    position: relative;
+    left: 70%;
+    background-color: brown;
+    padding:8px;
+}
 .seccionMedio .publicacionImagen{
     background-color: rgba(226, 223, 217, 0.5);
     margin-bottom: 13px;
@@ -193,11 +199,12 @@ article .seccionDerecha{
 
     }
     .seccionMedio .divPublicarTop img{
-        
         min-width: 27px;
         min-height: 27px;
-        
     }
+    .seccionMedio .idInv{
+        display: none;
+    }/*Esto para saber su id, aunque quizas no lo ocupe despues*/
     article .seccionLado img{
         width: 40%;
         padding-left: 5%;

@@ -198,8 +198,7 @@ article .seccionDerecha{
     }
     .seccionMedio .idInv{
         display: none;
-    }/*Esto para que el id este pero no se muestre y de esta forma eliminar
-    publicaciones de manera mas facil*/
+    }/*Esto para saber su id, aunque quizas no lo ocupe despues*/
     article .seccionLado img{
         width: 40%;
         padding-left: 5%;
