@@ -41,9 +41,9 @@
                         <div id="ModificarCaja">
                             <i class="fas fa-wrench" class="IconoModificar"></i>
                             <div class="DivModificar">
-                                <form action="" method="post">
+                                <form action="/update/" method="post">
                                     <p>Escriba la modificación de texto</p>
-                                    <input type="text" name="texto" placeholder="¿que piensas?"> 
+                                    <input type="text" name="texto" value="<%= data.texto %>"> 
                                     <button type="submit"><i class="fas fa-search"></i></button>
                                 </form>
                             </div>
