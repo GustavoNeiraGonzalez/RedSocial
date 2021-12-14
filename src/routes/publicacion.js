@@ -5,5 +5,5 @@ const publicacionController = require('../controllers/publicacionController');
 
 router.get('/', publicacionController.list);
 router.post('/add', publicacionController.save);
-router.get('/delete', publicacionController.delete);
+router.get('/delete/:id', publicacionController.delete);
 module.exports=router;

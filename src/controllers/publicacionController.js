@@ -37,7 +37,13 @@ controller.save = (req, res) => {
     })
 }
 controller.delete = (req, res) => {
-    
+    req.getConnection((err, conn) => {
+        const {id} = req.params;
+        conn.query('DELETE FROM publicacion WHERE id = ?',[id], (err, rows) => {
+            res.redirect('/');
+        })
+
+    })
 }
 
 

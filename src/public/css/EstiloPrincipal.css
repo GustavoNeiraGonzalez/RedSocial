@@ -196,6 +196,10 @@ article .seccionDerecha{
         min-width: 27px;
         min-height: 27px;
     }
+    .seccionMedio .idInv{
+        display: none;
+    }/*Esto para que el id este pero no se muestre y de esta forma eliminar
+    publicaciones de manera mas facil*/
     article .seccionLado img{
         width: 40%;
         padding-left: 5%;
