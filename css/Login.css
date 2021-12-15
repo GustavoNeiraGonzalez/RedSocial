@@ -1,0 +1,27 @@
+body{
+    background-color: rgb(14, 91, 94);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.divLogin{
+    background-color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    text-align: center;
+    padding: 14px;
+    border-radius: 16px;
+}
+.divLogin .formLogin{
+    display: flex;
+    flex-direction: column;
+}
+.divLogin .formLogin input{
+    margin-top: 7px;
+    margin-bottom: 10px;
+    border-radius: 15px;   
+    border:none;
+}
