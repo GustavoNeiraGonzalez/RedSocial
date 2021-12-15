@@ -41,9 +41,9 @@
                         <div id="ModificarCaja">
                             <i id="IconoModificar" class="fas fa-bars"></i>
                             <div class="DivModificar">
-                                <form action="" method="post">
+                                <form action="/update/<%= data[i].id %>" method="post">
                                     <p>Escriba la modificación de texto</p>
-                                    <input type="text" name="texto" placeholder="¿que piensas?"> 
+                                    <input type="text" name="texto" value="<%= data.texto %>" placeholder="¿que piensas?"> 
                                     <button type="submit"><i class="fas fa-search"></i></button>
                                 </form>
                             </div>

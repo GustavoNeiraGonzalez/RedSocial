@@ -16,6 +16,7 @@ controller.list = (req, res) =>{
     })
 };
 
+
 controller.save = (req, res) => {
     const data = req.body;
 
@@ -26,19 +27,29 @@ controller.save = (req, res) => {
         });
     })
 }
-controller.save = (req, res) => {
-    const data = req.body;
-
+controller.edit = (req, res) => {
+    const {id} = req.params;
+    req.getConnection((err,conn)  =>{
+        conn.query('select * from publicacion where id = ?', [id], (err,publicaciones) =>{
+            res.render('publicaciones_edit', {
+                data:publicaciones[0]
+            });
+        })
+    })
+};
+controller.update = (req, res) =>{
+    const {id} = req.params;
+    const NewPublic = req.body;
     req.getConnection((err, conn) => {
-        conn.query('INSERT INTO publicacion set ?', [data], (err, publicaciones) => {
-            console.log(publicaciones);
+        conn.query('update publicacion set ? where id = ?', [NewPublic, id], (err, rows) =>{
             res.redirect('/');
         });
     })
 }
 controller.delete = (req, res) => {
+    const {id} = req.params;
+
     req.getConnection((err, conn) => {
-        const {id} = req.params;
         conn.query('DELETE FROM publicacion WHERE id = ?',[id], (err, rows) => {
             res.redirect('/');
         })
