@@ -31,9 +31,7 @@ controller.edit = (req, res) => {
     const {id} = req.params;
     req.getConnection((err,conn)  =>{
         conn.query('select * from publicacion where id = ?', [id], (err,publicaciones) =>{
-            res.render('publicaciones_edit', {
-                data:publicaciones[0]
-            });
+            
         })
     })
 };
