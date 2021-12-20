@@ -135,7 +135,7 @@ article .seccionMedio .divPublicarTop img{
     right:7%;
     background-color: brown;
     padding:8px;
-    display:no;
+    display:none;
 }
 .seccionMedio .publicacionImagen{
     background-color: rgba(226, 223, 217, 0.5);
@@ -171,7 +171,7 @@ article .seccionMedio .divPublicarTop img{
 
 .seccionMedio div .InfoPerfil img{
     width: 15%;
-    height: 30px;
+    height: 40px;
     border-radius: 45%;
 }
 h4{

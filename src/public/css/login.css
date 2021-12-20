@@ -1,12 +1,12 @@
-body{
-    background-image: url('/img/principal.PNG') cover;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.divbtnRegistro{
+    position:absolute;
+    width: 100vh;
     height: 100vh;
-
+    background-color:;
+}
+.divBtn{
+    margin-top: 50px;
+    margin-left: 250px;
 }
 .divLogin{
     background-color: cadetblue;
@@ -28,7 +28,4 @@ body{
     margin-bottom: 10px;
     border-radius: 15px;   
     border:none;
-}
-.divContenedor{
-    display:flex;
 }
