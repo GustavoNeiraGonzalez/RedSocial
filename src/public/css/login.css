@@ -1,12 +1,12 @@
 .divbtnRegistro{
     position:absolute;
-    width: 100vh;
+    width: 100%;
     height: 100vh;
-    background-color:;
+    background-color:rgba(0, 255, 255, 0.219);
 }
 .divBtn{
-    margin-top: 50px;
-    margin-left: 250px;
+    margin-top: 60px;
+    margin-left: 70%;
 }
 .divLogin{
     background-color: cadetblue;
@@ -28,4 +28,7 @@
     margin-bottom: 10px;
     border-radius: 15px;   
     border:none;
+}
+.divContenedor{
+    display:flex;
 }
