@@ -22,24 +22,20 @@ controller.save = (req, res) => {
 
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO publicacion set ?', [data], (err, publicaciones) => {
+            if (err) throw err
             console.log(publicaciones);
             res.redirect('/');
         });
     })
 }
-controller.edit = (req, res) => {
-    const {id} = req.params;
-    req.getConnection((err,conn)  =>{
-        conn.query('select * from publicacion where id = ?', [id], (err,publicaciones) =>{
-            
-        })
-    })
-};
+
 controller.update = (req, res) =>{
     const {id} = req.params;
     const NewPublic = req.body;
     req.getConnection((err, conn) => {
         conn.query('update publicacion set ? where id = ?', [NewPublic, id], (err, rows) =>{
+            if (err) throw err
+            console.log(rows);
             res.redirect('/');
         });
     })

@@ -5,6 +5,14 @@ const mysql = require('mysql');
 const myConnection = require('express-myconnection');
 
 const app = express();
+
+const dotenv = require('dotenv');
+
+const bcryptjs = require('bcryptjs');
+dotenv.config({path:'./env/.env'});
+
+
+
 //importing routes
 const publicacionRoutes = require('./routes/publicacion');
 
