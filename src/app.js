@@ -44,7 +44,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //static files
 
 
-
+app.get('/asd',(req,res) => {
+    res.render('login.ejs')
+});
 app.listen(app.get('port'), () =>{
     console.log('Server on port 3000');
+    console.log(__dirname);
 })
