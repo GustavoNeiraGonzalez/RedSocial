@@ -5,16 +5,20 @@ const mysql = require('mysql');
 const myConnection = require('express-myconnection');
 
 const app = express();
-
 const dotenv = require('dotenv');
 
 const bcryptjs = require('bcryptjs');
 dotenv.config({path:'./env/.env'});
-
-
+const session = require('express-session');
+app.use(session({
+    secret:'secret',
+    resave:true,
+    saveUnitialized:true
+}))
 
 //importing routes
 const publicacionRoutes = require('./routes/publicacion');
+const connection = require('../database/db');
 
 
 //settings
@@ -34,6 +38,7 @@ app.use(myConnection(mysql, {
     database: 'redsocial'
 }, 'single'))
 app.use(express.urlencoded({extend: false}));
+app.use(express.json());
 //middlewares
 
 //routes

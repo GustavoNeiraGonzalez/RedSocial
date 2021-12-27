@@ -18,9 +18,9 @@
         <div class="divContenedor">
             <div class="divLogin">
                 <h3>Bienvenido</h3>
-                <form action="" class="formLogin">
-                    <input type="text" placeholder="Correo">
-                    <input type="text" placeholder="Contraseña">
+                <form action="auth" method="post" class="formLogin">
+                    <input type="text" name="correo" placeholder="Correo" required>
+                    <input type="password" name="contraseña" placeholder="Contraseña" required>
                     <button>Iniciar Sesion</button>
                 </form> 
                 <a href="">¿Perdiste tu contraseña?</a>
