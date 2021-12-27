@@ -64,7 +64,7 @@ app.post('/register', async (req,res)=>{
                 alertMessage:"Felicidades, la registración ha sido un exito.",
                 alertIcon:"success",
                 showConfirmButton:false,
-                timer:1500,
+                timer:3500,
                 ruta:''
             });
         }
