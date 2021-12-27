@@ -48,7 +48,14 @@ app.use('/', publicacionRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 //static files
 
-
+app.post('/register', async (req,res)=>{
+    const nombre = req.body.nombre;
+    const usuario = req.body.usuario;
+    const contraseña = req.body.contraseña;
+    const email = req.body.email;
+    let passwordHaash = await bcryptjs.hash(pass,8);
+    connection.query('INSERT INTO usuarios set ?', {nombre:nombre, usuario:usuario, contraseña:,email:email});
+});
 app.get('/asd',(req,res) => {
     res.render('login.ejs')
 });
