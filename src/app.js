@@ -58,7 +58,15 @@ app.post('/register', async (req,res)=>{
         if(error){
             console.log("error al insertar dato usuario:"+error);
         }else{
-            res.send('insertación exitosa');
+            res.render('login',{
+                alert: true,
+                alertTitle: "Registración Exitosa",
+                alertMessage:"Felicidades, la registración ha sido un exito.",
+                alertIcon:"success",
+                showConfirmButton:false,
+                timer:1500,
+                ruta:''
+            });
         }
     });
 });
