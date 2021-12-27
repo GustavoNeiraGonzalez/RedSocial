@@ -21,6 +21,7 @@
                 <form action="auth" method="post" class="formLogin">
                     <input type="text" name="correo" placeholder="Correo" required>
                     <input type="password" name="contraseña" placeholder="Contraseña" required>
+                    <input type="submit" class="btn-login" value="Login">
                     <button>Iniciar Sesion</button>
                 </form> 
                 <a href="">¿Perdiste tu contraseña?</a>
@@ -28,11 +29,12 @@
             </div>
             <div class="divLogin">
                 <h3>Registrate</h3>
-                <form action="" class="formLogin">
-                    <input type="text" placeholder="Nombre">
-                    <input type="text" placeholder="Usuario">
-                    <input type="text" placeholder="contraseña">
-                    <input type="text" placeholder="email">
+                <form action="register" method="POST" class="formLogin">
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                    <input type="text" name="usuario" placeholder="Usuario" required>
+                    <input type="password" name="contraseña" placeholder="contraseña" required>
+                    <input type="text" name="email" placeholder="email" required>
+                    <a href="/">sasd<input type="submit" class="btn-save" value="save"> </a>
                     <button>Registrar</button>
                 </form> 
     
