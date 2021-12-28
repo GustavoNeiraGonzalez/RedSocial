@@ -73,6 +73,23 @@ app.post('/register', async (req,res)=>{
 app.get('/asd',(req,res) => {
     res.render('login.ejs')
 });
+app.post('/auth', async (req, res)=>{
+    const usuario = req.body.usuario;
+    const pass = req.body.contraseña;
+    let passwordHassh = await bcryptjs.hash(pass,8);
+    if(usuario && pass){
+        connection.query('Select * from usuarios where usuario = ?', [usuario], async (error, results)=>{
+            if(error){
+                console.log("error al insertar dato usuario:"+error);
+            }else if(results.length == 0 || !(await bcryptjs.compare(pass, results[0].contraseña))){
+                res.send('usuario y/o password incorrectas');
+            }else{
+                res.send('login correcto')
+            }
+        })
+    }
+});
+
 app.listen(app.get('port'), () =>{
     console.log('Server on port 3000');
     console.log(__dirname);
