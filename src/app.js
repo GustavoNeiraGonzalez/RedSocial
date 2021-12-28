@@ -79,9 +79,7 @@ app.post('/auth', async (req, res)=>{
     let passwordHassh = await bcryptjs.hash(pass,8);
     if(usuario && pass){
         connection.query('Select * from usuarios where usuario = ?', [usuario], async (error, results)=>{
-            if(error){
-                console.log("error al insertar dato usuario:"+error);
-            }else if(results.length == 0 || !(await bcryptjs.compare(pass, results[0].contraseña))){
+            if(results.length == 0 || !(await bcryptjs.compare(pass, results[0].contraseña))){
                 res.render('login', {
                     alert: true,
                     alertTitle: "Error",
@@ -104,6 +102,7 @@ app.post('/auth', async (req, res)=>{
 					ruta: ''
 				});        			
             }
+            res.end();
         })
     }else{
 
@@ -111,7 +110,7 @@ app.post('/auth', async (req, res)=>{
 });
 app.get('/', (req, res)=>{
     if(req.session.loggedin){
-        res.render('muro.ejs',{
+        res.render('muro',{
             login: true,
             name: req.session.name
         });
@@ -119,8 +118,8 @@ app.get('/', (req, res)=>{
         res.render('muro.ejs',{
             login:false,
             name:'Debe iniciar sesión'
-        })
-        }
+        });
+        
     }
 });
 app.listen(app.get('port'), () =>{
