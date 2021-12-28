@@ -82,14 +82,47 @@ app.post('/auth', async (req, res)=>{
             if(error){
                 console.log("error al insertar dato usuario:"+error);
             }else if(results.length == 0 || !(await bcryptjs.compare(pass, results[0].contraseña))){
-                res.send('usuario y/o password incorrectas');
+                res.render('login', {
+                    alert: true,
+                    alertTitle: "Error",
+                    alertMessage: "USUARIO y/o PASSWORD incorrectas",
+                    alertIcon:'error',
+                    showConfirmButton: true,
+                    timer: 4000,
+                    ruta: ''    
+                });
             }else{
-                res.send('login correcto')
+                req.session.loggedin = true;                
+				req.session.nombre = results[0].nombre;
+				res.render('login', {
+					alert: true,
+					alertTitle: "Conexión exitosa",
+					alertMessage: "¡LOGIN CORRECTO!",
+					alertIcon:'success',
+					showConfirmButton: false,
+					timer: 1500,
+					ruta: ''
+				});        			
             }
         })
+    }else{
+
     }
 });
-
+app.get('/', (req, res)=>{
+    if(req.session.loggedin){
+        res.render('muro.ejs',{
+            login: true,
+            name: req.session.name
+        });
+    }else{
+        res.render('muro.ejs',{
+            login:false,
+            name:'Debe iniciar sesión'
+        })
+        }
+    }
+});
 app.listen(app.get('port'), () =>{
     console.log('Server on port 3000');
     console.log(__dirname);
