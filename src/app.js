@@ -70,9 +70,10 @@ app.post('/register', async (req,res)=>{
         }
     });
 });
-app.get('/asd',(req,res) => {
+app.get('/login',(req,res) => {
     res.render('login.ejs')
 });
+
 app.post('/auth', async (req, res)=>{
     const usuario = req.body.usuario;
     const pass = req.body.contraseña;
@@ -80,7 +81,7 @@ app.post('/auth', async (req, res)=>{
     if(usuario && pass){
         connection.query('Select * from usuarios where usuario = ?', [usuario], async (error, results)=>{
             if(results.length == 0 || !(await bcryptjs.compare(pass, results[0].contraseña))){
-                res.render('login', {
+                res.render('login.ejs', {
                     alert: true,
                     alertTitle: "Error",
                     alertMessage: "USUARIO y/o PASSWORD incorrectas",
@@ -92,7 +93,7 @@ app.post('/auth', async (req, res)=>{
             }else{
                 req.session.loggedin = true;                
 				req.session.nombre = results[0].nombre;
-				res.render('login', {
+				res.render('', {
 					alert: true,
 					alertTitle: "Conexión exitosa",
 					alertMessage: "¡LOGIN CORRECTO!",
@@ -105,22 +106,24 @@ app.post('/auth', async (req, res)=>{
             res.end();
         })
     }else{
-
+        res.send('Please enter user and Password!');
+		res.end();
     }
 });
 app.get('/', (req, res)=>{
-    if(req.session.loggedin){
-        res.render('muro',{
+    if(req.session.loggedin) {
+        res.render('muro.ejs',{
             login: true,
-            name: req.session.name
+            nombre: req.session.nombre,
+            error:false
         });
     }else{
         res.render('muro.ejs',{
             login:false,
-            name:'Debe iniciar sesión'
+            nombre:'Debe iniciar sesión'
         });
-        
     }
+    res.end();
 });
 app.listen(app.get('port'), () =>{
     console.log('Server on port 3000');
