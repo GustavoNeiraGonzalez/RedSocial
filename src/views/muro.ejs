@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/EstiloPrincipal.css">
     <title>Red Social</title>
 </head>
-<% if(typeof(login) =="undefined") { %>
+<% if(login) { %>
     <h1>el usuario conectado es <strong><%= nombre %></strong></h1>
     <a href="logout">logout</a>
 <% } else { %>

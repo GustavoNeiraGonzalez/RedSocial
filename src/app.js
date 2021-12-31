@@ -81,7 +81,7 @@ app.post('/auth', async (req, res)=>{
     if(usuario && pass){
         connection.query('Select * from usuarios where usuario = ?', [usuario], async (error, results)=>{
             if(results.length == 0 || !(await bcryptjs.compare(pass, results[0].contraseña))){
-                res.render('login.ejs', {
+                res.render('login', {
                     alert: true,
                     alertTitle: "Error",
                     alertMessage: "USUARIO y/o PASSWORD incorrectas",
@@ -93,7 +93,7 @@ app.post('/auth', async (req, res)=>{
             }else{
                 req.session.loggedin = true;                
 				req.session.nombre = results[0].nombre;
-				res.render('', {
+				res.render('login', {
 					alert: true,
 					alertTitle: "Conexión exitosa",
 					alertMessage: "¡LOGIN CORRECTO!",
@@ -112,13 +112,13 @@ app.post('/auth', async (req, res)=>{
 });
 app.get('/', (req, res)=>{
     if(req.session.loggedin) {
-        res.render('muro.ejs',{
+        res.render('muro',{
             login: true,
             nombre: req.session.nombre,
             error:false
         });
     }else{
-        res.render('muro.ejs',{
+        res.render('muro',{
             login:false,
             nombre:'Debe iniciar sesión'
         });
