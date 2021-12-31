@@ -112,10 +112,21 @@ app.post('/auth', async (req, res)=>{
 });
 app.get('/', (req, res)=>{
     if(req.session.loggedin) {
-        res.render('muro',{
-            login: true,
-            nombre: req.session.nombre,
-            error:false
+        req.getConnection((err,conn) =>{
+            conn.query('select * from publicacion', (err, publicaciones) =>{
+                if (err){
+                    res.json('error datos publicacion'+err)
+                }
+                else{
+                    console.log(publicaciones);
+                    res.render('muro', {
+                        data: publicaciones,
+                        login: true,
+                        nombre: req.session.nombre,
+                        error:false
+                    })
+                }
+            })
         });
     }else{
         res.render('muro',{
@@ -123,7 +134,7 @@ app.get('/', (req, res)=>{
             nombre:'Debe iniciar sesión'
         });
     }
-    res.end();
+
 });
 app.listen(app.get('port'), () =>{
     console.log('Server on port 3000');
