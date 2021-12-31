@@ -119,7 +119,8 @@ app.get('/', (req, res)=>{
                 }
                 else{
                     console.log(publicaciones);
-                    res.render('muro', {
+                    res.render('muro', {/* aqui evitamos que aparezca variable is not defined
+                         */
                         data: publicaciones,
                         login: true,
                         nombre: req.session.nombre,

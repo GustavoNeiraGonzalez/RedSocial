@@ -35,4 +35,8 @@
 }
 .divContenedor{
     display:flex;
+    display: none;
+}
+#menu-bar:checked ~ .divContenedor{
+    display: flex;
 }
