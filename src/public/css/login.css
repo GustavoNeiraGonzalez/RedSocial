@@ -3,11 +3,29 @@
     width: 100%;
     height: 100vh;
     background-color:rgba(0, 255, 255, 0.219);
+    z-index: 5;
 }
 .divBtn{
     margin-top: 60px;
     margin-left: 70%;
     margin-bottom: 100px;
+}
+#btncambio{
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 15px;
+    background-color: rgb(227, 231, 2);
+    box-shadow: inset 0 0 0 0 #f9e506;
+    transition: ease-out 0.8s;
+    outline:none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#btncambio:hover{
+    box-shadow:inset 170px 0 0 0 #67f906;
+    cursor:pointer;
+    color:#000;
 }
 .divContenedor{
     justify-content: center;
@@ -34,9 +52,15 @@
     border:none;
 }
 .divContenedor{
-    display:flex;
+    
     display: none;
 }
-#menu-bar:checked ~ .divContenedor{
-    display: flex;
+header{
+    z-index: 1;
+    filter:blur(2px)
 }
+article{
+    z-index:1;
+    filter:blur(2px);
+}
+

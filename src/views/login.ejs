@@ -11,12 +11,13 @@
     <title>Red Social</title>
 </head>
 <body>
-    <div class="divbtnRegistro">
+    <div class="divbtnRegistro" id="FondoLogin">
         <div class="divBtn">
-            <input type="checkbox" id="menu-bar">
-            <label class="fa-solid fa-bars" for="menu-bar" id="IconoMenu"></label>
-    </div>
-        <div class="divContenedor">
+            <button id="btncambio">
+                Mostrar login
+            </button>
+        </div>
+        <div class="divContenedor" id="DivLogin2" style="display:none">
             <div class="divLogin">
                 <h3>Bienvenido</h3>
                 <form action="/auth" method="post" class="formLogin">
@@ -40,10 +41,23 @@
                 </form> 
     
             </div>
-    
         </div>
     </div>
-    <header>
+    <script>
+        function cambiar(){
+            if(document.getElementById("DivLogin2").style.display == "none"){
+                document.getElementById("DivLogin2").style.display = "flex";
+                document.getElementById("fondo1").style.filter = "blur(6px)";
+                document.getElementById("fondo2").style.filter = "blur(6px)";
+            }else{
+                document.getElementById("DivLogin2").style.display = "none";
+                document.getElementById("fondo1").style.filter = "none";
+                document.getElementById("fondo2").style.filter = "none";
+            }
+        }
+        document.getElementById("btncambio").addEventListener("click",cambiar)
+    </script>
+    <header id="fondo2">
         <div class="imagenIzq">
             <img src="/img/startup-3267505_1920.jpg" alt="">
         </div>
@@ -57,7 +71,7 @@
             <img src="/img/umbrella-1822586_1920.jpg" alt="">
         </div>
     </header>
-    <article>
+    <article id="fondo1">
         <section class="seccionLado">
             <div id="busquedaIzq">
                 <input type="text" placeholder="Busqueda">
@@ -109,19 +123,17 @@
                 <img src="/img/girl-1641215_1920.jpg " alt="">
             </div>
             <div>
-                <img src="-2562646_1920.jpg" alt="">
-                <img src="it-2194457_1920.jpg" alt="">
-                <img src="it-3204843_1920.jpg" alt="">
-                <img src="3083390_1920.jpg" alt="">
-                <img src="-2562646_1920.jpg" alt="">
+                <img src="/img/beanie-2562646_1920.jpg" alt="">
+                <img src="/img/portrait-2194457_1920.jpg" alt="">
+                <img src="/img/portrait-3204843_1920.jpg" alt="">
+                <img src="/img/woman-3083390_1920.jpg" alt="">
+                <img src="/img/beanie-2562646_1920.jpg" alt="">
                 <img src="/img/portrait-2194457_1920.jpg" alt="">
             </div>
         </section>
     </article>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    
     <% if(typeof alert != "undefined") { %>
         <script>
             Swal.fire({
@@ -136,7 +148,6 @@
         </script>
     <% } %>
     
-    
     <% if(typeof alert != "undefined") { %>
         <script>
             Swal.fire({
@@ -150,4 +161,5 @@
             })
         </script>
     <% } %>
+
 </body>
