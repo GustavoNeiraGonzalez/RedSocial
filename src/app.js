@@ -3,6 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
+const nodemailer = require("nodemailer");
 
 const app = express();
 const dotenv = require('dotenv');
@@ -47,6 +48,34 @@ app.use('/', publicacionRoutes);
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
 //static files
+
+app.post("/send-email", (req,res) => {
+    var transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        post: 587,
+        secure: false,
+        auth: {
+            user: "rachelle.brown@ethereal.email",
+            pass:"SnVyCNWnPfpEQnt1Wd"
+        },
+    });
+    var mailOptions = {
+        from: "rachelle.brown@ethereal.email",
+        to: "gustavoeduardoneiragonzalez@gmail.com",
+        subject: "enviado desde nodemailer",
+        text: "holamundo"
+    }
+
+    transporter.sendMail(mailOptions,(err, info) =>{
+        if(err){
+            res.status(500).send(err.message)
+        }else{
+            console.log("Email enviado.");
+            res.status(200).jsonp(req.body)
+        }
+    })
+})
+
 
 app.post('/register', async (req,res)=>{
     const nombre = req.body.nombre;
