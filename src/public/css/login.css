@@ -40,20 +40,58 @@
     padding: 14px;
     margin-right: 5px;
     border-radius: 16px;
+    width: 30%;
+    min-height: ;
+}
+#fondo1{
+    filter:blur(6px);
+}
+#fondo2{
+    filter:blur(6px);
 }
 .divLogin .formLogin{
     display: flex;
     flex-direction: column;
+    
 }
 .divLogin .formLogin input{
     margin-top: 7px;
     margin-bottom: 10px;
+    padding-left: 9px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     border-radius: 15px;   
     border:none;
 }
-.divContenedor{
-    
-    display: none;
+.btn-save{
+    width: 50%;
+    background-color: rgb(227, 231, 2);
+    box-shadow: inset 0 0 0 0 #f9e506;
+    transition: ease-out 0.8s;
+    outline:none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.btn-login{
+    width: 50%;
+    margin-left: 25%;
+    background-color: rgb(227, 231, 2);
+    box-shadow: inset 0 0 0 0 #f9e506;
+    transition: ease-out 0.8s;
+    outline:none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.btn-login:hover{
+    box-shadow:inset 170px 0 0 0 #67f906;
+    cursor:pointer;
+    color:#000;
+}
+.btn-save:hover{
+    box-shadow:inset 170px 0 0 0 #67f906;
+    cursor:pointer;
+    color:#000;
+}
+.divContenedor{ 
+    display: flex;
 }
 header{
     z-index: 1;
