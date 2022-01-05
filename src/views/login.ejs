@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
     <link rel="shortcut icon" href="" />
     <link rel="stylesheet" href="/css/EstiloPrincipal.css">
-    <link rel="stylesheet" href="/css/Login.css">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Red Social</title>
 </head>
 <body>
@@ -36,7 +36,7 @@
                     <input type="text" name="usuario" placeholder="Usuario" required>
                     <input type="password" name="contraseña" placeholder="contraseña" required>
                     <input type="text" name="email" placeholder="email" required>
-                    <a href="/"><input type="submit" class="btn-save" value="Registrarse!"> </a>
+                    <input type="submit" class="btn-save" value="Registrarse!"> 
                 </form> 
                 <form action="send-email" method="POST" class="formLogin">
                     <input type="submit" class="btn-save" value="ENVIAR EMAIL!"><
@@ -145,7 +145,8 @@
                 showConfirmButton: '<%= showConfirmButton %>',
                 timer: '<%= timer %>',
             }).then(()=>{
-                window.location='/login <%= ruta %>'
+                window.location='<%= ruta %>'
+
             })
         </script>
     <% } %>
@@ -159,7 +160,8 @@
                 showConfirmButton: '<%= showConfirmButton %>',
                 timer: '<%= timer %>',
             }).then(()=>{
-                window.location='/ <%= ruta %>'
+                window.location='<%= ruta %>'
+
             })
         </script>
     <% } %>

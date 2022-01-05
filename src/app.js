@@ -85,7 +85,14 @@ app.post('/register', async (req,res)=>{
     let passwordHaash = await bcryptjs.hash(contraseña,8);
     connection.query('INSERT INTO usuarios set ?', {nombre:nombre, usuario:usuario, contraseña:passwordHaash,email:email}, async(error, results)=>{
         if(error){
-            console.log("error al insertar dato usuario:"+error);
+            if(error.fatal=true){
+                console.trace()
+                console.log("ERROR FATAL insertar dato usuario:"+error);
+                res.json('ERROR FATAL insertar datos en usuarios'+error)
+            }else{
+                console.log("error al insertar dato usuario:"+error);
+                res.json('error al insertar datos en usuarios'+error);    
+            }
         }else{
             res.render('login',{
                 alert: true,
@@ -94,7 +101,7 @@ app.post('/register', async (req,res)=>{
                 alertIcon:"success",
                 showConfirmButton:false,
                 timer:3500,
-                ruta:''
+                ruta:'/login'
             });
         }
     });
@@ -117,9 +124,13 @@ app.post('/auth', async (req, res)=>{
                     alertIcon:'error',
                     showConfirmButton: true,
                     timer: 4000,
-                    ruta: ''    
+                    ruta: '/login'    
                 });
-            }else{
+            }else if(error){
+                res.json('Error fatal al intentar iniciar sesion '+err)
+                console.log('Error fatal al intentar iniciar sesion '+error);
+            }
+            else{
                 req.session.loggedin = true;                
 				req.session.nombre = results[0].nombre;
 				res.render('login', {
@@ -129,7 +140,7 @@ app.post('/auth', async (req, res)=>{
 					alertIcon:'success',
 					showConfirmButton: false,
 					timer: 1500,
-					ruta: ''
+					ruta: '/'
 				});        			
             }
             res.end();
@@ -142,21 +153,25 @@ app.post('/auth', async (req, res)=>{
 app.get('/', (req, res)=>{
     if(req.session.loggedin) {
         req.getConnection((err,conn) =>{
-            conn.query('select * from publicacion', (err, publicaciones) =>{
-                if (err){
-                    res.json('error datos publicacion'+err)
-                }
-                else{
-                    console.log(publicaciones);
-                    res.render('muro', {/* aqui evitamos que aparezca variable is not defined
-                         */
-                        data: publicaciones,
-                        login: true,
-                        nombre: req.session.nombre,
-                        error:false
-                    })
-                }
-            })
+            if(err){
+                res.json('error al requerir inicio de ssion '+err)
+            }else{
+                conn.query('select * from publicacion', (err, publicaciones) =>{
+                    if (err){
+                        res.json('error datos publicacion'+err)
+                    }
+                    else{
+                        console.log(publicaciones);
+                        res.render('muro', {/* aqui evitamos que aparezca variable is not defined
+                            */
+                            data: publicaciones,
+                            login: true,
+                            nombre: req.session.nombre,
+                            error:false
+                        })
+                    }
+                })
+            }
         });
     }else{
         res.render('muro',{
