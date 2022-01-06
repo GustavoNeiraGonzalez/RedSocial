@@ -200,6 +200,39 @@ app.get('/', (req, res)=>{
     }
 
 });
+app.get('/Chats', (req, res)=>{
+    if(req.session.loggedin) {
+        req.getConnection((err,conn) =>{
+            if(err){
+                res.json('error al requerir inicio de ssion '+err)
+                res.end();
+            }else{
+                conn.query('select * from publicacion', (err, publicaciones) =>{
+                    if (err){
+                        res.json('error datos publicacion'+err)
+                    }
+                    else{
+                        console.log(publicaciones);
+                        res.render('chats', {/* aqui evitamos que aparezca variable is not defined
+                            */
+                            data: publicaciones,
+                            login: true,
+                            nombre: req.session.nombre,
+                            error:false
+                        })
+                    }
+                })
+            }
+        });
+    }else{
+        res.render('chats',{
+            login:false,
+            nombre:'Debe iniciar sesión'
+        });
+    }
+
+});
+
 app.listen(app.get('port'), () =>{
     console.log('Server on port 3000');
     console.log(__dirname);
