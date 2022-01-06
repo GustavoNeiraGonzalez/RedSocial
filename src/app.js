@@ -38,6 +38,7 @@ app.use(myConnection(mysql, {
     port:3306,
     database: 'redsocial'
 }, 'single'))
+
 app.use(express.urlencoded({extend: false}));
 app.use(express.json());
 //middlewares
@@ -83,28 +84,45 @@ app.post('/register', async (req,res)=>{
     const contraseña = req.body.contraseña;
     const email = req.body.email;
     let passwordHaash = await bcryptjs.hash(contraseña,8);
-    connection.query('INSERT INTO usuarios set ?', {nombre:nombre, usuario:usuario, contraseña:passwordHaash,email:email}, async(error, results)=>{
-        if(error){
-            if(error.fatal=true){
-                console.trace()
-                console.log("ERROR FATAL insertar dato usuario:"+error);
-                res.json('ERROR FATAL insertar datos en usuarios'+error)
+    const emailregex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if(emailregex.test(email)){
+        connection.query('INSERT INTO usuarios set ?', {nombre:nombre, usuario:usuario, contraseña:passwordHaash,email:email}, async(error, results)=>{
+            if(error){
+                if(error.fatal){
+                    console.trace('fatal error: ' + err.message);
+                    console.log("ERROR FATAL insertar dato usuario:"+error);
+                    res.json('ERROR FATAL insertar datos en usuarios'+error)
+                }else{
+                    console.log("error al insertar dato usuario:"+error);
+                    res.json('error al insertar datos en usuarios'+error);    
+                }
+                res.end();
             }else{
-                console.log("error al insertar dato usuario:"+error);
-                res.json('error al insertar datos en usuarios'+error);    
+                res.render('login',{
+                    alert: true,
+                    alertTitle: "Registración Exitosa",
+                    alertMessage:"Felicidades, la registración ha sido un exito.",
+                    alertIcon:"success",
+                    showConfirmButton:false,
+                    timer:3500,
+                    ruta:'/login'
+                });
+
+                res.end();
             }
-        }else{
-            res.render('login',{
-                alert: true,
-                alertTitle: "Registración Exitosa",
-                alertMessage:"Felicidades, la registración ha sido un exito.",
-                alertIcon:"success",
-                showConfirmButton:false,
-                timer:3500,
-                ruta:'/login'
-            });
-        }
-    });
+        });
+    }else{
+        res.render('login',{
+            alert: true,
+            alertTitle: "Debe poner un correo valido",
+            alertMessage:"Debe poner un correo valido.",
+            alertIcon:"error",
+            showConfirmButton:true,
+            timer:3500,
+            ruta:'/login'
+        });
+    }
+    
 });
 app.get('/login',(req,res) => {
     res.render('login.ejs')
@@ -129,8 +147,7 @@ app.post('/auth', async (req, res)=>{
             }else if(error){
                 res.json('Error fatal al intentar iniciar sesion '+err)
                 console.log('Error fatal al intentar iniciar sesion '+error);
-            }
-            else{
+            }else{
                 req.session.loggedin = true;                
 				req.session.nombre = results[0].nombre;
 				res.render('login', {
@@ -143,6 +160,7 @@ app.post('/auth', async (req, res)=>{
 					ruta: '/'
 				});        			
             }
+            
             res.end();
         })
     }else{
@@ -155,6 +173,7 @@ app.get('/', (req, res)=>{
         req.getConnection((err,conn) =>{
             if(err){
                 res.json('error al requerir inicio de ssion '+err)
+                res.end();
             }else{
                 conn.query('select * from publicacion', (err, publicaciones) =>{
                     if (err){
