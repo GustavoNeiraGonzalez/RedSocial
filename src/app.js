@@ -5,8 +5,13 @@ const mysql = require('mysql');
 const myConnection = require('express-myconnection');
 const nodemailer = require("nodemailer");
 
+
 const app = express();
 const dotenv = require('dotenv');
+const http = require("http").Server(app);
+
+
+const io = require('socket.io')(http)
 
 const bcryptjs = require('bcryptjs');
 dotenv.config({path:'./env/.env'});
@@ -16,6 +21,7 @@ app.use(session({
     resave:true,
     saveUnitialized:true
 }))
+
 
 //importing routes
 const publicacionRoutes = require('./routes/publicacion');
@@ -195,7 +201,7 @@ app.get('/', (req, res)=>{
     }else{
         res.render('muro',{
             login:false,
-            nombre:'Debe iniciar sesión'
+            nombre:'Debe iniciar sesión',
         });
     }
 
@@ -233,7 +239,21 @@ app.get('/Chats', (req, res)=>{
 
 });
 
-app.listen(app.get('port'), () =>{
-    console.log('Server on port 3000');
-    console.log(__dirname);
-})
+io.sockets.on("connection", function(socket) {
+    console.log("conexion normal", socket.id)
+    socket.on("username", function() {
+      console.log("conexion username")
+    });
+  
+    socket.on("disconnect", function() {
+        console.log("conexion disconnect")
+    });
+  
+    socket.on("chat_message", function() {
+        console.log("conexion chat_messages")
+    });
+  });
+
+const server = http.listen(3000,function(){
+    console.log('Server working! asd localhost:3000');
+}) 
