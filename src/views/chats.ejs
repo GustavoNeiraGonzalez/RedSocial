@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
     <link rel="shortcut icon" href="" />
     <link rel="stylesheet" href="/css/EstiloPrincipal.css">
+    <link rel="stylesheet" href="/css/chats.css">
     <title>Red Social</title>
 </head>
 
@@ -36,13 +37,19 @@
 
                 </form>
             </div>
-            <div id="chat">
+            <div id="chatContenedor">
                 <h1>chat con socket.io y nodejss</h1>
 
-                <div id="messages">
+                <div id="chatVentana">
+                    <div id="Salida">
 
+                    </div>
+                    <div id="actions">
+
+                    </div>
                 </div>
-
+                <input type="text" id="mensaje">
+                <button id="EnviarMensaje"> enviar mensaje</button>
             </div>
 
         </section>
@@ -63,5 +70,14 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
+        let message = document.getElementById("mensaje")
+        let username = document.getElementById("username");
+        let btn = document.getElementById('EnviarMensaje');
+        let output = document.getElementById('output');
+        let actions = document.getElementById('actions');
+
+        btn.addEventListener('click', function (){
+            console.log("estoesunclick")
+        });
     </script>
 </body>

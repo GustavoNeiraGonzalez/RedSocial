@@ -240,6 +240,7 @@ app.get('/Chats', (req, res)=>{
 });
 
 io.sockets.on("connection", function(socket) {
+
     console.log("conexion normal", socket.id)
     socket.on("username", function() {
       console.log("conexion username")
