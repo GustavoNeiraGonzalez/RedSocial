@@ -41,13 +41,14 @@
                 <h1>chat con socket.io y nodejss</h1>
 
                 <div id="chatVentana">
-                    <div id="Salida">
+                    <div id="output">
 
                     </div>
                     <div id="actions">
 
                     </div>
                 </div>
+                <input type="text" id="idUsuario" value="<%= nombre %>" >
                 <input type="text" id="mensaje">
                 <button id="EnviarMensaje"> enviar mensaje</button>
             </div>
@@ -77,7 +78,17 @@
         let actions = document.getElementById('actions');
 
         btn.addEventListener('click', function (){
-            console.log("estoesunclick")
+            
+        socket.emit('chat_message', {
+            message:message.value,
+
+            });
+            
+        });
+
+        socket.on("Mensaje del servidor", function(data){
+            output.innerHTML += '<p> <strong> asd </strong> </p>'
+            console.log("Mensaje recibido!!"+data.message)
         });
     </script>
 </body>

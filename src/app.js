@@ -156,6 +156,8 @@ app.post('/auth', async (req, res)=>{
             }else{
                 req.session.loggedin = true;                
 				req.session.nombre = results[0].nombre;
+                req.session.id = results[0].id;
+
 				res.render('login', {
 					alert: true,
 					alertTitle: "Conexión exitosa",
@@ -192,6 +194,7 @@ app.get('/', (req, res)=>{
                             data: publicaciones,
                             login: true,
                             nombre: req.session.nombre,
+                            id: req.session.id,
                             error:false
                         })
                     }
@@ -224,6 +227,7 @@ app.get('/Chats', (req, res)=>{
                             data: publicaciones,
                             login: true,
                             nombre: req.session.nombre,
+                            id: req.session.id,
                             error:false
                         })
                     }
@@ -250,11 +254,13 @@ io.sockets.on("connection", function(socket) {
         console.log("conexion disconnect")
     });
   
-    socket.on("chat_message", function() {
+    socket.on("chat_message",(data) => {
         console.log("conexion chat_messages")
+        console.log(data);
+        io.sockets.emit('Mensaje del servidor', data);  
     });
   });
-
+  
 const server = http.listen(3000,function(){
     console.log('Server working! asd localhost:3000');
 }) 
