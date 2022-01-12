@@ -87,7 +87,7 @@
         });
 
         socket.on("Mensaje del servidor", function(data){
-            output.innerHTML += '<p> <strong> asd </strong> </p>'
+            output.innerHTML += '<p> <strong> '+data.message +'</strong> </p>'
             console.log("Mensaje recibido!!"+data.message)
         });
     </script>
