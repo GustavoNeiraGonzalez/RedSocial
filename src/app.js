@@ -265,16 +265,26 @@ io.sockets.on("connection", function(socket) {
         console.log("conexion chat_messages")
         console.log(data);
         io.sockets.emit('Mensaje del servidor', data); 
-        
+
         connection.query("insert into mensajes(id_mgrupo,mensajes) values(1,'"+data.message+"')",
         function (error, result) {
             if(error){
                 console.log("error al insertar mensaje de chat al servidor: "+error)
             }else{
-
             }
         });
     });
+    
+    connection.query("select mens.mensajes from chat as ch inner join mensajegrupo as mg on ch.id_chat inner join mensajes as mens on mg.id_mgrupo=mens.id_mgrupo where ch.id_usuario=1 and ch.id_usuario_Amigo=2", (err, selectMensajes) =>{
+        if (err){
+            res.json(err)
+        }
+        else{
+        }
+    })
+    
+    
+
 
 });
   
