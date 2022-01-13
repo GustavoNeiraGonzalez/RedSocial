@@ -156,8 +156,7 @@ app.post('/auth', async (req, res)=>{
             }else{
                 req.session.loggedin = true;                
 				req.session.nombre = results[0].nombre;
-                req.session.id = results[0].id;
-
+                req.session.id = results[0].id;//por alguna razon da el id encryptado
 				res.render('login', {
 					alert: true,
 					alertTitle: "Conexión exitosa",
@@ -194,9 +193,9 @@ app.get('/', (req, res)=>{
                             data: publicaciones,
                             login: true,
                             nombre: req.session.nombre,
-                            id: req.session.id,
+                            id: req.session.id, //por alguna razon da el id encryptado, NO NECESITO EL ID DE MOMENTO EN MURO, LA SOLUCION LA TENGO EN LA PARTE DE CHAT
                             error:false
-                        })
+                        })     
                     }
                 })
             }
@@ -216,19 +215,27 @@ app.get('/Chats', (req, res)=>{
                 res.json('error al requerir inicio de ssion '+err)
                 res.end();
             }else{
-                conn.query('select * from publicacion', (err, publicaciones) =>{
+                conn.query('Select id from usuarios where usuario = ?', [req.session.nombre], (err, Usuarioid) =>{
                     if (err){
                         res.json('error datos publicacion'+err)
                     }
                     else{
-                        console.log(publicaciones);
-                        res.render('chats', {/* aqui evitamos que aparezca variable is not defined
-                            */
-                            data: publicaciones,
-                            login: true,
-                            nombre: req.session.nombre,
-                            id: req.session.id,
-                            error:false
+                        
+                        conn.query('select * from publicacion', (err, publicaciones) =>{
+                            if (err){
+                                res.json('error datos publicacion'+err)
+                            }
+                            else{
+                    
+                                res.render('chats', {/* aqui evitamos que aparezca variable is not defined
+                                    */
+                                    data: publicaciones,
+                                    login: true,
+                                    nombre: req.session.nombre,
+                                    idUsuario:Usuarioid,
+                                    error:false
+                                }) 
+                            }
                         })
                     }
                 })
@@ -257,10 +264,20 @@ io.sockets.on("connection", function(socket) {
     socket.on("chat_message",(data) => {
         console.log("conexion chat_messages")
         console.log(data);
-        io.sockets.emit('Mensaje del servidor', data);  
+        io.sockets.emit('Mensaje del servidor', data); 
+        
+        connection.query("insert into mensajes(id_mgrupo,mensajes) values(1,'"+data.message+"')",
+        function (error, result) {
+            if(error){
+                console.log("error al insertar mensaje de chat al servidor: "+error)
+            }else{
+
+            }
+        });
     });
-  });
+
+});
   
 const server = http.listen(3000,function(){
     console.log('Server working! asd localhost:3000');
-}) 
+});

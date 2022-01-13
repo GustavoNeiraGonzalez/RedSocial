@@ -48,7 +48,9 @@
 
                     </div>
                 </div>
-                <input type="text" id="idUsuario" value="<%= nombre %>" >
+                <h1>el usuario conectado es <strong><%= nombre %></strong></h1>
+                <p>asdasd <%= idUsuario[0].id %></p>
+                <input type="text" id="idUsuario" value="<%= idUsuario   %>" >
                 <input type="text" id="mensaje">
                 <button id="EnviarMensaje"> enviar mensaje</button>
             </div>
@@ -87,8 +89,8 @@
         });
 
         socket.on("Mensaje del servidor", function(data){
-            output.innerHTML += '<p> <strong> '+data.message +'</strong> </p>'
-            console.log("Mensaje recibido!!"+data.message)
+            output.innerHTML += '<p> <strong> '+data.message +'</strong> </p>';
+            console.log("Mensaje recibido!!" + data.message)//esto en realidad no sirve hasta que el sv lo escuce en app.js
         });
     </script>
 </body>
