@@ -208,6 +208,14 @@ app.get('/', (req, res)=>{
     }
 
 });
+app.get('/logout',(req, res) =>{
+    req.session.destroy(() =>{
+        console.log("Finalizando session")
+        res.redirect('/')
+    })
+});
+
+
 app.get('/Chats', (req, res)=>{
     if(req.session.loggedin) {
         req.getConnection((err,conn) =>{
@@ -283,6 +291,7 @@ io.sockets.on("connection", function(socket) {
             io.sockets.emit('MostrarMensajesservidor', selectMensajes,console.log(selectMensajes)); 
         }
     })
+
     
     
 

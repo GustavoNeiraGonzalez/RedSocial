@@ -76,18 +76,18 @@
         <script>
             const socket = io();
             let message = document.getElementById("mensaje")
-            let username = document.getElementById("username");
+            let username = document.getElementById("");
             let btn = document.getElementById('EnviarMensaje');
             let output = document.getElementById('output');
             let actions = document.getElementById('actions');
 
             btn.addEventListener('click', function (){
                 
-            socket.emit('chat_message', {
-                message:message.value,
-
-                });
+                socket.emit('chat_message', {
+                    message:message.value,
+                    });
                 
+                document.getElementById("mensaje").value="";
             });
 
             socket.on("Mensaje del servidor", function(data){
@@ -95,11 +95,22 @@
                 console.log("Mensaje recibido!!" + data.message)//esto en realidad no sirve hasta que el sv lo escuche en app.js
             });
             socket.on("MostrarMensajesservidor", function(data){
+                
                 for (var i = 0; i < data.length; i++) { //estructura para mostrar todos los mensajes de la base de datos :D
                     output.innerHTML += '<p> <strong> '+data[i].mensajes+'</strong> </p>';
                 }
-
+                
+               
             });
+
+/*
+            obj = document.getElementById('output');
+            numero = obj.getElementsByTagName('p').length;//error en n odarle a numero el valor del texto de html??
+            for (var i = 0; i < numero; i++) { 
+            texto = obj.getElementsByTagName(obj.getElementsByTagName('p').innerHTML);
+                console.log(texto)
+            }
+*/
         </script>
     </body>
 <% } else { %>
