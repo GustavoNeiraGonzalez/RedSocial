@@ -280,6 +280,7 @@ io.sockets.on("connection", function(socket) {
             res.json(err)
         }
         else{
+            io.sockets.emit('MostrarMensajesservidor', selectMensajes,console.log(selectMensajes)); 
         }
     })
     
