@@ -266,7 +266,7 @@ io.sockets.on("connection", function(socket) {
         console.log(data);
         io.sockets.emit('Mensaje del servidor', data); 
 
-        connection.query("insert into mensajes(id_mgrupo,mensajes) values(1,'"+data.message+"')",
+        connection.query("insert into mensajes(id_mgrupo,mensajes,id_usuarioEscritor) values(1,'"+data.message+"',1)",
         function (error, result) {
             if(error){
                 console.log("error al insertar mensaje de chat al servidor: "+error)
