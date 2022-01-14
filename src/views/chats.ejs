@@ -10,93 +10,99 @@
     <link rel="stylesheet" href="/css/chats.css">
     <title>Red Social</title>
 </head>
-
-<body>
-    <%- include ('partials/_header'); %>
-    <article>
-        <section class="seccionLado">
-            <div id="busquedaIzq">
-                <input type="text" placeholder="Busqueda">
-                <h4>Personas que quizas Conozcas</h4>
-            </div>
-            <div id="artIzqImg">
-                <img src="img/beanie-2562646_1920.jpg" alt="">
-                <img src="img/portrait-2194457_1920.jpg" alt="">
-                <img src="img/portrait-3204843_1920.jpg" alt="">
-                <img src="img/woman-3083390_1920.jpg" alt="">
-                <img src="img/beanie-2562646_1920.jpg" alt="">
-                <img src="img/portrait-2194457_1920.jpg" alt="">
-            </div>
-        </section>
-        <section class="seccionMedio">
-            <div class="divPublicarTop">
-                <img src="img/woman-3083390_1920.jpg" alt="">
-                <form action="/add" method="post">
-                    <input type="text" name="texto" placeholder="¿que piensas?"> 
-                    <button type="submit"><i class="fas fa-search"></i></button>
-
-                </form>
-            </div>
-            <div id="chatContenedor">
-                <h1>chat con socket.io y nodejss</h1>
-
-                <div id="chatVentana">
-                    <div id="output">
-
-                    </div>
-                    <div id="actions">
-
-                    </div>
+<% if(login==true) { %>
+    <h1>el usuario conectado es <strong><%= nombre %></strong></h1>
+    <a href="logout">logout</a>
+    <body>
+        <%- include ('partials/_header'); %>
+        <article>
+            <section class="seccionLado">
+                <div id="busquedaIzq">
+                    <input type="text" placeholder="Busqueda">
+                    <h4>Personas que quizas Conozcas</h4>
                 </div>
-                <h1>el usuario conectado es <strong><%= nombre %></strong></h1>
-                <p>asdasd <%= idUsuario[0].id %></p>
-                <input type="text" id="idUsuario" value="<%= idUsuario   %>" >
-                <input type="text" id="mensaje">
-                <button id="EnviarMensaje"> enviar mensaje</button>
-            </div>
+                <div id="artIzqImg">
+                    <img src="img/beanie-2562646_1920.jpg" alt="">
+                    <img src="img/portrait-2194457_1920.jpg" alt="">
+                    <img src="img/portrait-3204843_1920.jpg" alt="">
+                    <img src="img/woman-3083390_1920.jpg" alt="">
+                    <img src="img/beanie-2562646_1920.jpg" alt="">
+                    <img src="img/portrait-2194457_1920.jpg" alt="">
+                </div>
+            </section>
+            <section class="seccionMedio">
+                <div class="divPublicarTop">
+                    <img src="img/woman-3083390_1920.jpg" alt="">
+                    <form action="/add" method="post">
+                        <input type="text" name="texto" placeholder="¿que piensas?"> 
+                        <button type="submit"><i class="fas fa-search"></i></button>
 
-        </section>
-        <section class="seccionLado">
-            <div id="ImagenGrande">
-                <img src="img/girl-1641215_1920.jpg " alt="">
-            </div>
-            <div>
-                <img src="img/beanie-2562646_1920.jpg" alt="">
-                <img src="img/portrait-2194457_1920.jpg" alt="">
-                <img src="img/portrait-3204843_1920.jpg" alt="">
-                <img src="img/woman-3083390_1920.jpg" alt="">
-                <img src="img/beanie-2562646_1920.jpg" alt="">
-                <img src="img/portrait-2194457_1920.jpg" alt="">
-            </div>
-        </section>
-    </article>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        let message = document.getElementById("mensaje")
-        let username = document.getElementById("username");
-        let btn = document.getElementById('EnviarMensaje');
-        let output = document.getElementById('output');
-        let actions = document.getElementById('actions');
+                    </form>
+                </div>
+                <div id="chatContenedor">
+                    <h1>chat con socket.io y nodejss</h1>
 
-        btn.addEventListener('click', function (){
-            
-        socket.emit('chat_message', {
-            message:message.value,
+                    <div id="chatVentana">
+                        <div id="output">
+
+                        </div>
+                        <div id="actions">
+
+                        </div>
+                    </div>
+                    <h1>el usuario conectado es <strong><%= nombre %></strong></h1>
+                    <p>asdasd <%= idUsuario[0].id %></p>
+                    <input type="text" id="idUsuario" value="<%= idUsuario   %>" >
+                    <input type="text" id="mensaje">
+                    <button id="EnviarMensaje"> enviar mensaje</button>
+                </div>
+
+            </section>
+            <section class="seccionLado">
+                <div id="ImagenGrande">
+                    <img src="img/girl-1641215_1920.jpg " alt="">
+                </div>
+                <div>
+                    <img src="img/beanie-2562646_1920.jpg" alt="">
+                    <img src="img/portrait-2194457_1920.jpg" alt="">
+                    <img src="img/portrait-3204843_1920.jpg" alt="">
+                    <img src="img/woman-3083390_1920.jpg" alt="">
+                    <img src="img/beanie-2562646_1920.jpg" alt="">
+                    <img src="img/portrait-2194457_1920.jpg" alt="">
+                </div>
+            </section>
+        </article>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const socket = io();
+            let message = document.getElementById("mensaje")
+            let username = document.getElementById("username");
+            let btn = document.getElementById('EnviarMensaje');
+            let output = document.getElementById('output');
+            let actions = document.getElementById('actions');
+
+            btn.addEventListener('click', function (){
+                
+            socket.emit('chat_message', {
+                message:message.value,
+
+                });
+                
+            });
+
+            socket.on("Mensaje del servidor", function(data){
+                output.innerHTML += '<p> <strong> '+data.message +'</strong> </p>';
+                console.log("Mensaje recibido!!" + data.message)//esto en realidad no sirve hasta que el sv lo escuche en app.js
+            });
+            socket.on("MostrarMensajesservidor", function(data){
+                for (var i = 0; i < data.length; i++) { //estructura para mostrar todos los mensajes de la base de datos :D
+                    output.innerHTML += '<p> <strong> '+data[i].mensajes+'</strong> </p>';
+                }
 
             });
-            
-        });
-
-        socket.on("Mensaje del servidor", function(data){
-            output.innerHTML += '<p> <strong> '+data.message +'</strong> </p>';
-            console.log("Mensaje recibido!!" + data.message)//esto en realidad no sirve hasta que el sv lo escuche en app.js
-        });
-        socket.on("MostrarMensajesservidor", function(data){
-            for (var i = 0; i < data.length; i++) { //estructura para mostrar todos los mensajes de la base de datos :D
-                output.innerHTML += '<p> <strong> '+data[i].mensajes+'</strong> </p>';
-            }
-
-        });
-    </script>
-</body>
+        </script>
+    </body>
+<% } else { %>
+    <h1><strong><%= nombre %></strong></h1>
+    <a href="login">IR AL LOGIN</a>
+<% } %>

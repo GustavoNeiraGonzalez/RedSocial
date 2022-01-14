@@ -12,9 +12,6 @@
 <% if(login==true) { %>
     <h1>el usuario conectado es <strong><%= nombre %></strong></h1>
     <a href="logout">logout</a>
-<% } else { %>
-
-<% } %>
         
     <body>
         <%- include ('partials/_header'); %>
@@ -105,3 +102,7 @@
             </section>
         </article>
     </body>        
+<% } else { %>
+    <h1><strong><%= nombre %></strong></h1>
+    <a href="login">IR AL LOGIN</a>
+<% } %>
