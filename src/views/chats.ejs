@@ -73,8 +73,10 @@
             </section>
         </article>
         <script src="/socket.io/socket.io.js"></script>
+
         <script>
             const socket = io();
+            
             let message = document.getElementById("mensaje")
             let username = document.getElementById("");
             let btn = document.getElementById('EnviarMensaje');
@@ -99,8 +101,8 @@
 
                 obj = document.getElementById('output');
                 numero = obj.getElementsByTagName('p').length;
-                console.log(numero)
-                console.log(totalmens)
+                console.log(numero)//mensaje de consola para verificar la cantidad de etiquetas p creadas en el for
+                console.log(totalmens)//mensaje de consola para verificar la cantidad de mensajes
                 if(numero<totalmens){
                     for (var i = 0; i < data.length; i++) { //estructura para mostrar todos los mensajes de la base de datos :D
                     output.innerHTML += '<p> <strong> '+data[i].mensajes+'</strong> </p>';
