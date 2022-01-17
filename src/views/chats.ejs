@@ -94,13 +94,18 @@
                 output.innerHTML += '<p> <strong> '+data.message +'</strong> </p>';
                 console.log("Mensaje recibido!!" + data.message)//esto en realidad no sirve hasta que el sv lo escuche en app.js
             });
-            socket.on("MostrarMensajesservidor", function(data){
-                
-                for (var i = 0; i < data.length; i++) { //estructura para mostrar todos los mensajes de la base de datos :D
+            socket.on("MostrarMensajesservidor", function(data,totalmens){
+    
+
+                obj = document.getElementById('output');
+                numero = obj.getElementsByTagName('p').length;
+                console.log(numero)
+                console.log(totalmens)
+                if(numero<totalmens){
+                    for (var i = 0; i < data.length; i++) { //estructura para mostrar todos los mensajes de la base de datos :D
                     output.innerHTML += '<p> <strong> '+data[i].mensajes+'</strong> </p>';
+                    }
                 }
-                
-               
             });
 
 /*
@@ -111,6 +116,16 @@
                 console.log(texto)
             }
 */
+        function eliminarElemento(id){
+            output = document.getElementById(output);	
+            if (!output){
+                alert("El elemento selecionado no existe");
+            } else {
+                padre = output.parentNode;
+                padre.removeChild(p);
+            }
+        }
+
         </script>
     </body>
 <% } else { %>
