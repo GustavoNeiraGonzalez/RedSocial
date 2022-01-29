@@ -93,7 +93,7 @@
             });
 
             socket.on("Mensaje del servidor", function(data){
-                output.innerHTML += '<p> <strong> '+data.message +'</strong> </p>';
+                output.innerHTML += '<p id="TextoTuyo"> <strong id="TextoTuyoStrong">'+data.message +'</strong> </p>';
                 console.log("Mensaje recibido!!" + data.message)//esto en realidad no sirve hasta que el sv lo escuche en app.js
             });
             socket.on("MostrarMensajesservidor", function(data,totalmens){
