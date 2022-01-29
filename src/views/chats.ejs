@@ -107,10 +107,10 @@
                     
                     for (var i = 0; i < data.length; i++) { //estructura para mostrar todos los mensajes de la base de datos :D
                         if(idUsuarioConectado.value == data[i].id_usuarioEscritor){//tiene .value porque se obitnee le valor desde una etiqueta html input
-                            output.innerHTML += '<p id="TextoTuyo"> <strong> '+"tuyo"+data[i].mensajes+': '+data[i].id_usuarioEscritor+': '+idUsuarioConectado.value+'</strong> </p>';
+                            output.innerHTML += '<p id="TextoTuyo"> <strong id="TextoTuyoStrong"> '+"tuyo"+data[i].mensajes+': '+data[i].id_usuarioEscritor+': '+idUsuarioConectado.value+'</strong> </p>';
                         }
                         else{
-                            output.innerHTML += '<p id="TextoAmigo"> <strong> '+"amigo"+data[i].mensajes+': '+data[i].id_usuarioEscritor+': '+idUsuarioConectado.value+'</strong> </p>';
+                            output.innerHTML += '<p id="TextoAmigo"> <strong id="TextoAmigoStrong"> '+"amigo"+data[i].mensajes+': '+data[i].id_usuarioEscritor+': '+idUsuarioConectado.value+'</strong> </p>';
                         }
                     }
                 }
