@@ -51,8 +51,7 @@
                         </div>
                     </div>
                     <h1>el usuario conectado es <strong><%= nombre %></strong></h1>
-                    <p>asdasd <%= idUsuario[0].id %></p>
-                    <input type="text" id="idUsuario" value="<%= idUsuario   %>" >
+                    <input type="text" id="idUsuario" value="<%= idUsuario[0].id   %>" >
                     <input type="text" id="mensaje">
                     <button id="EnviarMensaje"> enviar mensaje</button>
                 </div>
@@ -76,19 +75,20 @@
 
         <script>
             const socket = io();
-            
+            var idUsuarioConectado = document.getElementById("idUsuario");//SE UTILIZA UN INPUT PARA OBTENER EL VALOR DE UNA ETIQUETA HTML (le doy el dato por defecto en el value del input, para que lo reconozca como si el usuario hubiera escrito ese valor)
             let message = document.getElementById("mensaje")
             let username = document.getElementById("");
             let btn = document.getElementById('EnviarMensaje');
             let output = document.getElementById('output');
             let actions = document.getElementById('actions');
-
+            console.log("USUARIO ID CONECTADO AAA")
+            console.log(idUsuarioConectado)
             btn.addEventListener('click', function (){
-                
+
                 socket.emit('chat_message', {
                     message:message.value,
                     });
-                
+                    
                 document.getElementById("mensaje").value="";
             });
 
@@ -104,8 +104,14 @@
                 console.log(numero)//mensaje de consola para verificar la cantidad de etiquetas p creadas en el for
                 console.log(totalmens)//mensaje de consola para verificar la cantidad de mensajes
                 if(numero<totalmens){
+                    
                     for (var i = 0; i < data.length; i++) { //estructura para mostrar todos los mensajes de la base de datos :D
-                    output.innerHTML += '<p> <strong> '+data[i].mensajes+'</strong> </p>';
+                        if(idUsuarioConectado.value == data[i].id_usuarioEscritor){//tiene .value porque se obitnee le valor desde una etiqueta html input
+                            output.innerHTML += '<p id="TextoTuyo"> <strong> '+"tuyo"+data[i].mensajes+': '+data[i].id_usuarioEscritor+': '+idUsuarioConectado.value+'</strong> </p>';
+                        }
+                        else{
+                            output.innerHTML += '<p id="TextoAmigo"> <strong> '+"amigo"+data[i].mensajes+': '+data[i].id_usuarioEscritor+': '+idUsuarioConectado.value+'</strong> </p>';
+                        }
                     }
                 }
             });

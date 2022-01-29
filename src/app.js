@@ -26,6 +26,7 @@ app.use(session({
 //importing routes
 const publicacionRoutes = require('./routes/publicacion');
 const connection = require('../database/db');
+const res = require('express/lib/response');
 
 
 //settings
@@ -274,20 +275,22 @@ io.sockets.on("connection", function(socket) {
         console.log(data);
         io.sockets.emit('Mensaje del servidor', data); 
 
-        connection.query("insert into mensajes(id_mgrupo,mensajes,id_usuarioEscritor) values(1,'"+data.message+"',1)",
+        connection.query("insert into mensajes(id_chat,mensajes,id_usuarioEscritor) values(1,'"+data.message+"',1)",
         function (error, result) {
             if(error){
-                console.log("error al insertar mensaje de chat al servidor: "+error)
+                res.json("error al insertar mensaje de chat al servidor: "+error)
             }else{
             }
         });
     });
     
-    connection.query("select mens.mensajes from chat as ch inner join mensajegrupo as mg on ch.id_chat inner join mensajes as mens on mg.id_mgrupo=mens.id_mgrupo where ch.id_usuario=1 and ch.id_usuario_Amigo=2", (err, selectMensajes) =>{
+    connection.query("select mens.mensajes, mens.id_usuarioEscritor from chat as ch inner join mensajes as mens on mens.id_chat=ch.id_chat where (select id from usuarios where usuario='ff')=1 and (select id from usuarios where usuario='liy')=2"
+    , (err, selectMensajes) =>{
         if (err){
-            res.json(err)
+            console.log(err)
         }
         else{
+            console.log(selectMensajes);
             io.sockets.emit('MostrarMensajesservidor', selectMensajes,selectMensajes.length); 
         }
     })
