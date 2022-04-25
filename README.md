@@ -27,7 +27,7 @@ Es una pagina web que contiene las funciones de una redsocial, en el proyecto se
 -Realizar publicaciones (eliminar y modificar las mismas)
 -Chat entre usuarios
 
-##Imagenes
+## Imagenes
 1)	Inicio de sesión y registración, donde el usuario iniciará sesión o se registrará
 ![ff2](https://user-images.githubusercontent.com/71986954/165014053-f4a707ce-39bc-4d25-8817-1b59576c2a85.PNG)
 2)	Espacio publicaciones, donde el usuario creará una publicación y la podrá modificar o eliminar
